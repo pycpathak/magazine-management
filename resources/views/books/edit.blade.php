@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.user_type.auth')
 
 @section('content')
 <div class="container-fluid py-4">
@@ -20,13 +20,13 @@
       <!-- same fields as create, but with $book->… values -->
       <div class="col-md-6 mb-3">
         <label class="form-label">Name <span class="text-danger">*</span></label>
-        <input type="text" name="name" value="{{ old('name', $book->name) }}"
+        <input type="text" name="book_name" value="{{ old('book_name', $book->book_name) }}"
                class="form-control" required>
       </div>
       <div class="col-md-6 mb-3">
         <label class="form-label">Edition / Volume</label>
-        <input type="text" name="edition"
-               value="{{ old('edition', $book->edition) }}"
+        <input type="text" name="book_edition"
+               value="{{ old('book_edition', $book->book_edition) }}"
                class="form-control">
       </div>
       <div class="col-md-4 mb-3">

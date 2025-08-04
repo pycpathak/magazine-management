@@ -1,4 +1,4 @@
-{{-- @extends('layouts.app') --}}
+
 @extends('layouts.user_type.auth')
 @section('content')
 <div class="container-fluid py-4">
@@ -16,7 +16,8 @@
       <table class="table table-hover align-items-center">
         <thead>
           <tr>
-            <th>Name</th>
+            <th>Book Name</th>
+            <th>Author Name</th>
             <th>Edition</th>
             <th>Price</th>
             <th>Frequency</th>
@@ -24,10 +25,11 @@
           </tr>
         </thead>
         <tbody>
-        {{-- @forelse($books as $book)
+        @forelse($books as $book)
           <tr>
-            <td>{{ $book->name }}</td>
-            <td>{{ $book->edition }}</td>
+            <td>{{ $book->book_name }}</td>
+            <td>{{ $book->author_name }}</td>
+            <td>{{ $book->book_edition }}</td>
             <td>${{ number_format($book->price, 2) }}</td>
             <td>{{ $book->publication_frequency }}</td>
             <td>
@@ -41,7 +43,7 @@
           </tr>
         @empty
           <tr><td colspan="5" class="text-center">No records found.</td></tr>
-        @endforelse --}}
+        @endforelse
         </tbody>
       </table>
 

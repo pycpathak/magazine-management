@@ -11,32 +11,35 @@ class BookController extends Controller
     // Display list
     public function index()
     {
-        // $books = Book::orderBy('name')->paginate(15);
-        // return view('books.index', compact('books'));
-        return view('books.index');
+        $books = Book::orderBy('book_name')->paginate(15);
+        return view('books.index', compact('books'));
+        // return view('books.index');
     }
 
     // Show create form
     public function create()
     {
+        // echo "Create a new book";
+        // die();
         $frequencies = Book::frequencies();
+        // die('Create a new book');
         return view('books.create', compact('frequencies'));
     }
 
     // Save new book
     public function store(Request $request)
     {
+        // dd($request->all());
         $data = $request->validate([
-            'name'                  => 'required|string|max:255',
-            'edition'               => 'nullable|string|max:255',
-            'price'                 => 'required|numeric|min:0',
-            'publication_frequency' => 'required|in:'.implode(',', array_keys(Book::frequencies())),
-            'notes'                 => 'nullable|string',
+            'book_name'             => 'required',
+            'book_edition'               => 'nullable',
+            'price'                 => 'required',
+            'publication_frequency' => 'required',
+            'notes'                 => 'nullable',
         ]);
 
         Book::create($data);
-        return redirect()->route('books.index')
-                         ->with('success', 'Book created successfully.');
+        return redirect()->route('books.index')->with('success', 'Book created successfully.');
     }
 
     // Show single book (optional)
